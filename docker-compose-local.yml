@@ -58,7 +58,7 @@ services:
     volumes:
       - ./web:/app/web
     env_file:
-      - ./web/.env
+      - ./web/.env.example
     depends_on:
       - api
       - worker
@@ -136,7 +136,7 @@ services:
       - ./apiserver:/code
     command: ./bin/docker-entrypoint-worker.sh
     env_file:
-      - ./apiserver/.env
+      - ./apiserver/.env.example
     depends_on:
       - api
       - plane-db
@@ -155,7 +155,7 @@ services:
       - ./apiserver:/code
     command: ./bin/docker-entrypoint-beat.sh
     env_file:
-      - ./apiserver/.env
+      - ./apiserver/.env.example
     depends_on:
       - api
       - plane-db
@@ -174,7 +174,7 @@ services:
       - ./apiserver:/code
     command: ./bin/docker-entrypoint-migrator.sh --settings=plane.settings.local
     env_file:
-      - ./apiserver/.env
+      - ./apiserver/.env.example
     depends_on:
       - plane-db
       - plane-redis
@@ -189,7 +189,7 @@ services:
     ports:
       - ${NGINX_PORT}:80
     env_file:
-      - .env
+      - .env.example
     environment:
       FILE_SIZE_LIMIT: ${FILE_SIZE_LIMIT:-5242880}
       BUCKET_NAME: ${AWS_S3_BUCKET_NAME:-uploads}
