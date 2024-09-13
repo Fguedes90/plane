@@ -179,26 +179,6 @@ services:
       - plane-db
       - plane-redis
 
-  proxy:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile.dev
-    restart: unless-stopped
-    networks:
-      - dev_env
-    ports:
-      - ${NGINX_PORT}:80
-    env_file:
-      - .env.example
-    environment:
-      FILE_SIZE_LIMIT: ${FILE_SIZE_LIMIT:-5242880}
-      BUCKET_NAME: ${AWS_S3_BUCKET_NAME:-uploads}
-    depends_on:
-      - web
-      - api
-      - space
-      - admin
-
 volumes:
   redisdata:
   uploads:
