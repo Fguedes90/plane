@@ -118,7 +118,7 @@ services:
       - ./apiserver:/code
     command: ./bin/docker-entrypoint-api-local.sh
     env_file:
-      - ./apiserver/.env
+      - ./apiserver/.env.example
     depends_on:
       - plane-db
       - plane-redis
