@@ -47,7 +47,7 @@ services:
     restart: always
     command: ./bin/docker-entrypoint-api.sh
     env_file:
-      - ./apiserver/.env
+      - ./apiserver/.env.example
     depends_on:
       - plane-db
       - plane-redis
